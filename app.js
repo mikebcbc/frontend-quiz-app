@@ -95,6 +95,7 @@ function handleAnswered() {
 				currentQuestion++;
 				renderQuestion();
 			} else {
+				currentQuestion++;
 				quizEnd();
 			}
 			handleStats();
