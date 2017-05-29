@@ -18,6 +18,7 @@ var SINGLE_CHOICE_IDENTIFIER = '.choice-';
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 var currentQuestion = 1;
+var currentCorrect;
 
 
 function generateQuestion(questions) {
@@ -32,18 +33,28 @@ function generateQuestion(questions) {
 	return question;
 }
 
-function checkAnswer() {
+function checkAnswer(question) {
 	// Check if answer is correct
-	// Increase correct or incorrect accordingly
-	// Return true or false depending
+		if (question.innerText == currentCorrect) {
+			return true;
+		} else {
+			return false;
+		}
 }
 
 function handleAnswered() {
 	// Triggers when answer is clicked
 	$(ANSWERS_ELEMENT_IDENTIFIER).on('click', CHOICE_BUTTON_IDENTIFIER, function(e) {
-		console.log("test");
+		// Call checkAnswer() to see if correct
+		var correct = checkAnswer(this);
+		if (correct === true) {
+			console.log(true);
+			correctAnswers++;
+		} else {
+			console.log(false);
+			incorrectAnswers++;
+		}
 	})
-	// Call checkAnswer() to see if correct
 	// Return CSS class/animation depending if correct or not
 	// Transition to next, call renderQuestion()
 }
@@ -54,6 +65,7 @@ function renderQuestion() {
 	// Input question into template
 	$(TITLE_SELECTOR).html(question.question);
 	$(NUMBER_SELECTOR).html(currentQuestion);
+	currentCorrect = question.correct;
 	// Input answers into template
 	for (i=0; i<=4; i++) {
 		$(SINGLE_CHOICE_IDENTIFIER + i).html(question.answers[i]);
