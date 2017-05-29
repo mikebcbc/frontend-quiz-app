@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Front-End Coding Quiz</title>
 	<meta type="description" content="Simple Front-End Coding Quiz to test your knowledge!">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="grid.css">
 	<link rel="stylesheet" href="main.css">
 </head>
@@ -18,7 +19,7 @@
 		<div class="row quiz-container">
 			<div class="row">
 				<div class="col-12 title">
-					<span class="quiz-number js-number"></span>
+					<span class="quiz-number js-number"></span>.
 					<span class="quiz-question js-question"></span>
 				</div>
 			</div>
@@ -42,13 +43,19 @@
 		<div class="score-container">
 			<div class="row">
 				<div class="col-4 remaining-questions">
-					<span class="js-remaining"></span> Left</span>
+					<div class="stat-container">
+						<span class="stat-number js-remaining"></span><span> Left</span>
+					</div>
 				</div>
 				<div class="col-4 correct-questions">
-					<span class="js-correct"></span> Correct</span>
+					<div class="stat-container">
+						<span class="stat-number js-correct"></span><span> Correct</span>
+					</div>
 				</div>
 				<div class="col-4 wrong-questions">
-					<span class="js-incorrect"></span> Incorrect</span>
+					<div class="stat-container">
+						<span class="stat-number js-incorrect"></span><span> Incorrect</span>
+					</div>
 				</div>
 			</div>
 		</div>

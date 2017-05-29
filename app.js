@@ -61,7 +61,7 @@ function checkAnswer(question) {
 function handleStats() {
 	$(CORRECT_NUMBER_IDENTIFIER).text(correctAnswers);
 	$(INCORRECT_NUMBER_IDENTIFIER).text(incorrectAnswers);
-	$(REMAINING_NUMBER_IDENTIFIER).text(5 - currentQuestion);
+	$(REMAINING_NUMBER_IDENTIFIER).text(6 - currentQuestion);
 }
 
 function transitionQuestion(choice, answer) {
@@ -69,7 +69,7 @@ function transitionQuestion(choice, answer) {
 		$(choice).addClass('correct');
 		correctAnswers++;
 	} else {
-		$(this).addClass('incorrect');
+		$(choice).addClass('incorrect');
 		incorrectAnswers++;
 	}
 }
@@ -81,16 +81,21 @@ function handleAnswered() {
 		var correct = checkAnswer(this);
 		if (correct === true) {
 			transitionQuestion(this, true);
+			$(CHOICE_BUTTON_IDENTIFIER).attr("disabled", "disabled");
 		} else {
 			transitionQuestion(this, false);
+			$(CHOICE_BUTTON_IDENTIFIER).attr("disabled", "disabled");
 		}
 		// Strip classes after animation
 		setTimeout(function() {
 			$('.incorrect, .correct').removeClass('incorrect correct');
+			$(CHOICE_BUTTON_IDENTIFIER).removeAttr("disabled");
 			// Transition to next, call renderQuestion()
 			if (currentQuestion != 5) {
 				currentQuestion++;
 				renderQuestion();
+			} else {
+				quizEnd();
 			}
 			handleStats();
 		}, 2000);
@@ -108,6 +113,10 @@ function renderQuestion() {
 	for (i=0; i<=4; i++) {
 		$(SINGLE_CHOICE_IDENTIFIER + i).html(question.answers[i]);
 	}
+}
+
+function quizEnd() {
+	$('.quiz-container').html("<img src='img/yay.gif' class='complete-image' /><p class='end-message'>That's the end of the quiz! Take a look at your score below!</p>");
 }
 
 function handleQuiz() {
