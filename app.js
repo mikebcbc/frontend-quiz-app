@@ -61,6 +61,7 @@ function checkAnswer(question) {
 function handleStats() {
 	$(CORRECT_NUMBER_IDENTIFIER).text(correctAnswers);
 	$(INCORRECT_NUMBER_IDENTIFIER).text(incorrectAnswers);
+	// Number of questions + 1, minus what question the user is on.
 	$(REMAINING_NUMBER_IDENTIFIER).text(6 - currentQuestion);
 }
 
@@ -86,8 +87,8 @@ function handleAnswered() {
 			transitionQuestion(this, false);
 			$(CHOICE_BUTTON_IDENTIFIER).attr("disabled", "disabled");
 		}
-		// Strip classes after animation
 		setTimeout(function() {
+			// Strip classes after a few and move on to next question
 			$('.incorrect, .correct').removeClass('incorrect correct');
 			$(CHOICE_BUTTON_IDENTIFIER).removeAttr("disabled");
 			// Transition to next, call renderQuestion()
