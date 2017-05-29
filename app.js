@@ -11,6 +11,9 @@ var QUESTIONS = [
 
 var NUMBER_SELECTOR = '.js-number';
 var TITLE_SELECTOR = '.js-question';
+var ANSWERS_ELEMENT_IDENTIFIER = '.js-answers';
+var CHOICE_BUTTON_IDENTIFIER = '.js-choice';
+var SINGLE_CHOICE_IDENTIFIER = '.choice-';
 
 var correctAnswers = 0;
 var incorrectAnswers = 0;
@@ -37,6 +40,9 @@ function checkAnswer() {
 
 function handleAnswered() {
 	// Triggers when answer is clicked
+	$(ANSWERS_ELEMENT_IDENTIFIER).on('click', CHOICE_BUTTON_IDENTIFIER, function(e) {
+		console.log("test");
+	})
 	// Call checkAnswer() to see if correct
 	// Return CSS class/animation depending if correct or not
 	// Transition to next, call renderQuestion()
@@ -48,8 +54,17 @@ function renderQuestion() {
 	// Input question into template
 	$(TITLE_SELECTOR).html(question.question);
 	$(NUMBER_SELECTOR).html(currentQuestion);
+	// Input answers into template
+	for (i=0; i<=4; i++) {
+		$(SINGLE_CHOICE_IDENTIFIER + i).html(question.answers[i]);
+	}
 	// Increase question number
 	currentQuestion++;
 }
 
-renderQuestion();
+function handleQuiz() {
+	renderQuestion();
+	handleAnswered();
+}
+
+$(handleQuiz);
