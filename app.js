@@ -118,7 +118,7 @@ function renderQuestion() {
 }
 
 function quizEnd() {
-	$('.quiz-container').html("<img src='img/yay.gif' class='complete-image' /><p class='end-message'>That's the end of the quiz! Take a look at your score below!</p>");
+	$('.quiz-container').html("<img src='img/yay.gif' class='complete-image' alt='Congratulations Image' /><p class='end-message'>That's the end of the quiz! Take a look at your score below!</p>");
 }
 
 function handleQuiz() {
