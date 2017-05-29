@@ -1,0 +1,14 @@
+.quiz-container {
+	border: 1px solid grey;
+	padding: 30px 0;
+	text-align: center;
+}
+
+.answer {
+	padding: 10px;
+}
+
+.score-container {
+	text-align: center;
+	padding: 30px;
+}
