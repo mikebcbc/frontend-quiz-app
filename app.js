@@ -30,6 +30,7 @@ function generateQuestion(questions) {
 		}
 	})
 	// Pull & return a question from the store if not
+	question.used = true;
 	return question;
 }
 
@@ -42,21 +43,33 @@ function checkAnswer(question) {
 		}
 }
 
+function transitionQuestion(choice, answer) {
+	if (answer === true) {
+		$(choice).addClass('correct');
+		correctAnswers++;
+	} else {
+		$(this).addClass('incorrect');
+		incorrectAnswers++;
+	}
+}
+
 function handleAnswered() {
 	// Triggers when answer is clicked
 	$(ANSWERS_ELEMENT_IDENTIFIER).on('click', CHOICE_BUTTON_IDENTIFIER, function(e) {
 		// Call checkAnswer() to see if correct
 		var correct = checkAnswer(this);
 		if (correct === true) {
-			console.log(true);
-			correctAnswers++;
+			transitionQuestion(this, true);
 		} else {
-			console.log(false);
-			incorrectAnswers++;
+			transitionQuestion(this, false);
 		}
+		// Strip classes after animation
+		setTimeout(function() {
+			$('.incorrect, .correct').removeClass('incorrect correct');
+			// Transition to next, call renderQuestion()
+			renderQuestion();
+		}, 2000);
 	})
-	// Return CSS class/animation depending if correct or not
-	// Transition to next, call renderQuestion()
 }
 
 function renderQuestion() {
